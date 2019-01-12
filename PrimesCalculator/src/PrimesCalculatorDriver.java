@@ -13,11 +13,11 @@ public class PrimesCalculatorDriver {
         // The number until which to calculate the primes
         int numberToCalculateTo = -1;
         Scanner input = new Scanner(System.in);
-        maxNumberOfRunningThreads = getData("maximum number of running thread", input);
+        maxNumberOfRunningThreads = getData("maximum number of running threads", input);
         numberToCalculateTo = getData("The number until which to find prime numbers", input);
         // The thread controller to use for calculating the primes
         PrimesCalculatorController cont = new PrimesCalculatorController(maxNumberOfRunningThreads, numberToCalculateTo);
-        for (int i=2; i < numberToCalculateTo; ++i) {
+        for (int i=2; i <= numberToCalculateTo; ++i) {
             // Wait for an available thread
             cont.waitForAvailableThread();
             // Increase number of active threads
@@ -27,8 +27,8 @@ public class PrimesCalculatorDriver {
         }
         // Wait for all threads to finish their calculations
         cont.waitForLastThread();
-        System.out.println("The prime numbers between 2 and %d", numberToCalculateTo);
-        System.out.println(cont.getResults());
+        System.out.printf("The prime numbers between 2 and %d are:%n", numberToCalculateTo);
+        System.out.printf("[%s]%n", cont.getResults());
     }
 
     /** This method checks that the user inputs a positive integer as data.
@@ -41,7 +41,7 @@ public class PrimesCalculatorDriver {
         boolean correctData = false;
         int userInput = 0;
         do {
-            System.out.println("Please input %s as a positive integer: ", data);
+            System.out.printf("Please input %s as a positive integer: ", data);
             try {
                 String nextToken = input.next();
                 userInput = Integer.parseInt(nextToken);

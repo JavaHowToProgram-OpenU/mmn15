@@ -94,9 +94,10 @@ public class PrimesCalculatorController {
         String res = "";
         for (int i=0; i < numbers.length; ++i) {
             if (numbers[i]) {
-                res += i + "\t";
+                res += i + " ";
             }
         }
-        return res;
+        // Use trim to remove trailing space
+        return res.trim();
     }
 }
